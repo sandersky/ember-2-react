@@ -1,0 +1,66 @@
+<h2 id="title">Welcome to Ember</h2>
+
+{{outlet}}
+
+<h3>Component</h3>
+
+<code>
+  <pre>
+import React from 'ember-2-react'
+
+export default React.createClass({
+  propTypes: {
+    foo: React.PropTypes.string.isRequired,
+    bar: React.PropTypes.number
+  },
+
+  getDefaultProps () {
+    return {
+      bar: 1
+    }
+  },
+
+  getInitialState () {
+    return {
+      baz: false
+    }
+  },
+
+  componentWillMount () {
+    this.setState({
+      baz: true
+    })
+  },
+
+  componentDidMount () {
+    this._intervalId = setInterval(() => {
+      this.setState({
+        date: new Date()
+      })
+    }, 1000)
+  },
+
+  componentWillUnmount () {
+    clearInterval(this._intervalId)
+  }
+})
+  </pre>
+</code>
+
+<h3>Template</h3>
+
+<code>
+  <pre>
+Foo: \{{foo}}
+&lt;br/&gt;
+Bar: \{{bar}}
+&lt;br/&gt;
+Baz: \{{state.baz}}
+&lt;br/&gt;
+Date: \{{state.date}}
+  </pre>
+</code>
+
+<h3>Demo</h3>
+
+{{foo-bar foo="test"}}
